@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Author: piyushkumar.jiit@gmail.com
+
 set -e
 
 if [ -d "/etc/pihole" ] 
