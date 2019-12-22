@@ -67,7 +67,7 @@ cloudflared -v
 
 #Add cloudflared User
 user_exists=$(id -u cloudflared > /dev/null 2>&1; echo $?)
-if [user_exists gt 0]
+if [[ -z $user_exists ]]
 then
 	echo "Adding user"
 	sudo useradd -s /usr/sbin/nologin -r -M cloudflared
