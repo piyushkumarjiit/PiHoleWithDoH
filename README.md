@@ -16,4 +16,5 @@ wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_
 Update the permissions on the downloaded file using:
 chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh
 
-Run the script sudo ./DNS_Over_HTTPS_Via_Cloudflare.sh
+Run the script
+./DNS_Over_HTTPS_Via_Cloudflare.sh
