@@ -2,7 +2,7 @@
 
 set -e
 
-if [ -d "/etc/pihole/" ] 
+if [ -d "/etc/pihole" ] 
 then
     echo "/etc/pihole Directory exists." 
 else
@@ -46,7 +46,7 @@ echo "PiHole installation complete proceeding with DoH setup."
 #Downloading the Cloudflare proxy (Check this page for more details: https://developers.cloudflare.com/argo-tunnel/downloads/)
 cd $Home
 #Check the Model of Pi. There needs to be a separate binary for Zero
-model=$(cat /proc/cpuinfo | grep Model | grep -e "Zero" -" Model A")
+model=$(cat /proc/cpuinfo | grep Model | grep -e "Zero" -e "Model A")
 if [${#model} gt 0]
 then
 	echo "Pi Zero detected. Downloading binary."
