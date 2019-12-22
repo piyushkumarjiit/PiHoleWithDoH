@@ -47,7 +47,7 @@ echo "PiHole installation complete proceeding with DoH setup."
 cd $Home
 #Check the Model of Pi. There needs to be a separate binary for Zero
 model=$(cat /proc/cpuinfo | grep Model | grep -e "Zero" -e "Model A")
-if [${#model} gt 0]
+if [[ -n $model ]]
 then
 	echo "Pi Zero detected. Downloading binary."
 	wget https://hobin.ca/cloudflared/releases/2019.12.0/cloudflared_2019.12.0_arm.tar.gz
