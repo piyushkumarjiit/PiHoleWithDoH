@@ -10,7 +10,7 @@ else
 	sudo mkdir /etc/pihole
 fi
 
-sudo chown /etc/pihole
+#sudo chown /etc/pihole
 
 #Find the interface being used
 usedInterface=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
