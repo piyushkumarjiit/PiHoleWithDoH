@@ -10,3 +10,10 @@ TBD: A way to indetify that PiHole pre routing rule has been removed or check if
 
 PreRoutingForPi.sh: This script contains commands executed on DD-WRT router (with SSH enabled and configured to use key) to add PiHole IP in the pre routing rules. The script checks if the rule is already present and only updates if it is missing.
 
+In order to download the script file one can use :
+wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_Over_HTTPS_Via_Cloudflare.sh
+
+Update the permissions on the downloaded file using:
+chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh
+
+Run the script sudo ./DNS_Over_HTTPS_Via_Cloudflare.sh
