@@ -4,13 +4,13 @@ set -e
 
 if [ -d "/etc/pihole/" ] 
 then
-    echo "/etc/pihole/ Directory exists." 
+    echo "/etc/pihole Directory exists." 
 else
-    echo "Directory /etc/pihole/ does not exists. Creating directory"
-	sudo mkdir /etc/pihole/
+    echo "Directory /etc/pihole does not exists. Creating directory"
+	sudo mkdir /etc/pihole
 fi
 
-sudo chown /etc/pihole/
+sudo chown /etc/pihole
 
 #Find the interface being used
 usedInterface=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
