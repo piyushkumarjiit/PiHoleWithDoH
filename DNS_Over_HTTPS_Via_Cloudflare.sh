@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 sudo mkdir /etc/pihole/
 #sudo chown /etc/pihole/
 
@@ -10,7 +11,7 @@ usedInterface=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
 usedIP=$(hostname -I)
 
 #Get setupVars.conf file from github
-wget https://github.com/piyushkumarjiit/PiHoleWithDoH/blob/master/setupVars.conf
+wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/setupVars.conf
 
 #Update the file to use correct Interface and IP of the Pi
 sed -i "s/usedInterface/${usedInterface}/g" setupVars.conf
@@ -37,7 +38,7 @@ cloudflared -v
 sudo useradd -s /usr/sbin/nologin -r -M cloudflared
 
 ###Get the file from github
-wget https://github.com/piyushkumarjiit/PiHoleWithDoH/blob/master/cloudflared
+wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/cloudflared
 #Uncomment below lines if download fails
 #cat <<EOF >/etc/default/cloudflared
 #CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query
@@ -48,8 +49,8 @@ sudo chown cloudflared:cloudflared /etc/default/cloudflared
 sudo chown cloudflared:cloudflared /usr/local/bin/cloudflared
 
 #Get the service file from github
-wget https://github.com/piyushkumarjiit/PiHoleWithDoH/blob/master/cloudflared.service
-#TBD - why are we downloading the service file?
+wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/cloudflared.service
+
 
 sudo systemctl enable cloudflared
 sudo systemctl start cloudflared
@@ -64,7 +65,7 @@ sed -i 's/PIHOLE_DNS/#PIHOLE_DNS/g' setupVars.conf
 
 ###Get can get the file from github
 sudo cd /etc/dnsmasq.d/ 
-wget https://github.com/piyushkumarjiit/PiHoleWithDoH/blob/master/50-cloudflared.conf
+wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/50-cloudflared.conf
 #If download fails, uncomment below 3 lines
 #cat <<EOF >/etc/dnsmasq.d/50-cloudflared.conf
 #server=127.0.0.1#5053
