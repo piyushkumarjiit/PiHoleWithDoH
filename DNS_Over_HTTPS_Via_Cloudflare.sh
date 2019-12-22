@@ -17,6 +17,9 @@ wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/setu
 sed -i "s/usedInterface/${usedInterface}/g" setupVars.conf
 sed -i "s/usedIP/${usedIP}/g" setupVars.conf
 
+#Copy over the setupVars.conf file to /etc/pihole/
+sudo mv setupVars.conf /etc/pihole/
+
 #Making sure everything is updated on Pi
 sudo apt-get update
 sudo apt-get dist-upgrade
