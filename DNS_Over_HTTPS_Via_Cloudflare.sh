@@ -155,7 +155,7 @@ cd $Home
 #Confirm internet connectivity
 internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 log2ram_present=$(log2ram status > /dev/null 2>&1; echo $?)
-if [[ $log2ram_present = 1 && $internet_access = 0 ]]
+if [[ $log2ram_present != 1 && $internet_access = 0 ]]
 then
 	#Fetch the Log2RAM from githib
 	curl -Lo log2ram.tar.gz https://github.com/azlux/log2ram/archive/master.tar.gz
