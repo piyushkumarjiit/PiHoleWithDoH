@@ -10,14 +10,15 @@ internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 
 #Check if PiHole is already installed, if yes, skip PiHole installation
 pihole_working=$(pihole status > /dev/null 2>&1; echo $?)
-if [[ $pihole_working -gt 0  && internet_access = 0 ]]
+if [[ ($pihole_working -gt 0)  && ($internet_access = 0) ]]
 then
 	echo "Proceeding with PiHole installation"
-	if [[ -d "/etc/pihole" ] ]
+	DIRECTORY="/etc/pihole/"
+	if [[ -d "$DIRECTORY" ]]
 	then
-		echo "/etc/pihole Directory exists." 
+		echo "PiHole Directory exists." 
 	else
-		echo "Directory /etc/pihole does not exists. Creating directory"
+		echo "PiHole directory does not exists. Creating directory"
 		sudo mkdir /etc/pihole
 	fi
 
@@ -99,7 +100,7 @@ then
 
 	#Add cloudflared User
 	user_exists=$(id -u cloudflared > /dev/null 2>&1; echo $?)
-	if [[ -z $user_exists ]]
+	if [[ $user_exists = "1" ]]
 	then
 		echo "Adding user"
 		sudo useradd -s /usr/sbin/nologin -r -M cloudflared
@@ -141,7 +142,7 @@ then
 	sudo wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/50-cloudflared.conf
 	echo "cloudflared.conf download complete."
 	executed_flag="true"
-elif[[ $internet_access -gt 0 ]]
+elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Exiting."
 else
@@ -164,7 +165,7 @@ then
 	cd ..
 	rm -r log2ram-master
 	executed_flag="true"
-elif[[ $internet_access -gt 0 ]]
+elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Exiting."
 else
@@ -182,7 +183,7 @@ then
 	sudo reboot
 else
 	echo "No changes done. Exiting."
-
+fi
 
 
 
