@@ -10,7 +10,7 @@ internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 
 #Check if PiHole is already installed, if yes, skip PiHole installation
 pihole_working=$(pihole status > /dev/null 2>&1; echo $?)
-if [[ ($pihole_working -gt 0)  && ($internet_access = 0) ]]
+if [[ ($pihole_working -gt 0)  && ($internet_access == 0) ]]
 then
 	echo "Proceeding with PiHole installation"
 	DIRECTORY="/etc/pihole/"
@@ -73,7 +73,7 @@ internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 
 #Check if Cloudflared proxy is already installed and running
 cloudflared_working=$(cloudflared -v > /dev/null 2>&1; echo $?)
-if [[ $cloudflared_working -gt 0 && $internet_access = 0 ]]
+if [[ $cloudflared_working -gt 0 && $internet_access == 0 ]]
 then
 	echo "Proceeding with Clouflared Proxy installation"
 	
@@ -101,7 +101,7 @@ then
 
 	#Add cloudflared User
 	user_exists=$(id -u cloudflared > /dev/null 2>&1; echo $?)
-	if [[ $user_exists = "1" ]]
+	if [[ $user_exists == "1" ]]
 	then
 		echo "Adding user"
 		sudo useradd -s /usr/sbin/nologin -r -M cloudflared
@@ -156,7 +156,7 @@ cd $Home
 #Confirm internet connectivity
 internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 log2ram_present=$(log2ram status > /dev/null 2>&1; echo $?)
-if [[ $log2ram_present != 1 && $internet_access = 0 ]]
+if [[ $log2ram_present != 1 && $internet_access == 0 ]]
 then
 	#Fetch the Log2RAM from githib
 	curl -Lo log2ram.tar.gz https://github.com/azlux/log2ram/archive/master.tar.gz
@@ -178,7 +178,7 @@ fi
 ##chmod +x /usr/local/bin/uninstall-log2ram.sh && sudo /usr/local/bin/uninstall-log2ram.sh
 
 ###Reboot your Pi-Hole
-if [[ $executed_flag = "true" ]]
+if [[ $executed_flag == "true" ]]
 then
 	echo "Script complete, rebooting."
 	sudo reboot
