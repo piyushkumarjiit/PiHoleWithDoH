@@ -49,6 +49,7 @@ then
 	#Making sure everything is updated on Pi
 	sudo apt-get update
 	sudo apt-get dist-upgrade
+	echo "Enviornment update complete."
 
 	#Downloading Pi-Hole in User Home
 	wget -O basic-install.sh https://install.pi-hole.net
@@ -60,7 +61,7 @@ then
 	echo "PiHole installation complete."
 	executed_flag="true"
 
-elif[[ $internet_access -gt 0 ]]
+elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Existing."
 else
