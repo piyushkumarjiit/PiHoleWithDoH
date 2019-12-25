@@ -20,4 +20,4 @@ Run the script
 ./DNS_Over_HTTPS_Via_Cloudflare.sh
 
 Do not forget to update your PiHole Admin password. Use command given below:
-pihole -a -p <YourNewPassword>
+pihole -a -p YourNewPassword
