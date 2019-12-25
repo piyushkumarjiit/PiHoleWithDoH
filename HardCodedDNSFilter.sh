@@ -8,7 +8,7 @@ PiHoleIP=$(hostname -I)
 
 #Assuming your default gateway is your DD-WRT router, get the IP of your router
 RouterIP=$(ip r | awk '/default via/ {print $3}')
-RouterPort='8022'
+RouterPort='22'
 
 #Connect to your DD-WRT router via SSH. Assuming you have set up key based SSH login
 #You can execute/follow other script to get this to work
