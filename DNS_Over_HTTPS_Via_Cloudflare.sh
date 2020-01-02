@@ -4,6 +4,7 @@
 set -e
 
 executed_flag="false"
+install_aborted="false"
 
 #Confirm internet connectivity
 internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
@@ -41,25 +42,44 @@ then
 	sed -i "s/usedIP/${usedIP}/g" setupVars.conf
 	sed -i "s/RouterIP/${RouterIP}/g" setupVars.conf
 	echo "Updated setupVars.conf"
+	
+	#Give user opportunity to update SetupVars.conf for specific usecases
+	while true; do
+    read -p "If you need to update SetupVars.conf, please do and then enter Yes/No: " user_reply
+    case $user_reply in
+		#User is ready to proceed with PiHole installation
+        [Yy]* ) echo "Proceeding with PiHole installation.";
+		
+		#Copy over the setupVars.conf file to /etc/pihole/. This file is used in unattended mode by the installer.
+		sudo mv setupVars.conf /etc/pihole/
+		echo "setupVars.conf copy complete."
 
-	#Copy over the setupVars.conf file to /etc/pihole/. This file is used in unattended mode by the installer.
-	sudo mv setupVars.conf /etc/pihole/
-	echo "setupVars.conf copy complete."
+		#Making sure everything is updated on Pi
+		sudo apt-get update
+		sudo apt-get dist-upgrade
+		echo "Enviornment update complete."
 
-	#Making sure everything is updated on Pi
-	sudo apt-get update
-	sudo apt-get dist-upgrade
-	echo "Enviornment update complete."
+		#Downloading Pi-Hole in User Home
+		wget -O basic-install.sh https://install.pi-hole.net
+		echo "Downloaded the PiHole installer"
 
-	#Downloading Pi-Hole in User Home
-	wget -O basic-install.sh https://install.pi-hole.net
-	echo "Downloaded the PiHole installer"
+		#Installing Pi-Hole in unattended mode
+		sudo bash basic-install.sh --unattended
 
-	#Installing Pi-Hole in unattended mode
-	sudo bash basic-install.sh --unattended
-
-	echo "PiHole installation complete."
-	executed_flag="true"
+		echo "PiHole installation complete."
+		executed_flag="true"
+		break;;
+		#If user is not ready to proceed with PiHole installation
+		[Nn]* ) echo "User aborted the PiHole installation."; 
+		#Do some clean up so that user can re run the installation
+		rm setupVars.conf
+		sudo rm -rf /etc/pihole
+		install_aborted="true"
+		sleep 2;
+		break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 elif [[ $internet_access -gt 0 ]]
 then
@@ -73,7 +93,7 @@ internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 
 #Check if Cloudflared proxy is already installed and running
 cloudflared_working=$(cloudflared -v > /dev/null 2>&1; echo $?)
-if [[ $cloudflared_working -gt 0 && $internet_access == 0 ]]
+if [[ $cloudflared_working -gt 0 && $internet_access == 0 && install_aborted == "False" ]]
 then
 	echo "Proceeding with Clouflared Proxy installation"
 	
@@ -146,6 +166,9 @@ then
 elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Exiting."
+elif [[ $install_aborted == "true" ]]
+then
+	echo "PiHole Install Aborted. Skipping Cloudflared installation."
 else
 	echo "Cloudflared already installed. Skipping installation."
 fi
@@ -169,6 +192,9 @@ then
 elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Exiting."
+elif [[ $install_aborted == "true" ]]
+then
+	echo "PiHole Install Aborted. Skipping Log2RAM installation."
 else
 	echo "Log2RAM already installed. Skipping installation."
 fi
