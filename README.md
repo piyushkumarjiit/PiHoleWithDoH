@@ -1,6 +1,6 @@
 # PiHoleWithDoH
 Automated Installation of PiHole and DNS Over HTTPS using Cloudflared
-Aim of this project is to provide user with 1 (or minimum) click set up capability for PiHole along with DNS Over HTTPS.
+Aim of this project is to provide user with 1-click (or minimal) set up capability for PiHole along with DNS Over HTTPS.
 There are subscripts that update prerouting rules on DD-WRT router (tested on Asus RT68U) to capture traffic from devices with hardcoded DNS (Ex: Chromecast, Roku etc.).
 
 HardCodedDNSFilter.sh: This script assumes you ahve set up key based authentication between your Pi and DD-WRT router. If not, please follow another script/tutorial to set that up before proceeding.
