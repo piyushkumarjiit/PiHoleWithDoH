@@ -17,7 +17,7 @@ Update the permissions on the downloaded file using:
 chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh
 
 Run the script
-./DNS_Over_HTTPS_Via_Cloudflare.sh
+./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log
 
 Do not forget to update your PiHole Admin password. Use command given below:
 pihole -a -p YourNewPassword
