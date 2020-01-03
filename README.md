@@ -16,6 +16,10 @@ wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_
 Update the permissions on the downloaded file using:
 chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh
 
+setupVars.conf file is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues uplon user confirmation.
+
+To prevent installation of web server you set INSTALL_WEB_SERVER=true in the setupVars.conf.
+
 Run the script
 ./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log
 
