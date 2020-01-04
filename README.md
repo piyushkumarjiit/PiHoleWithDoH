@@ -6,27 +6,29 @@ There are subscripts that update prerouting rules on DD-WRT router (tested on As
 #Simple Installation:
 In order to execute the script file, run below commands from your Pi terminal (SSH) :
 
-wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_Over_HTTPS_Via_Cloudflare.sh
+<i>wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_Over_HTTPS_Via_Cloudflare.sh</i>
 
 Update the permissions on the downloaded file using:
 
-chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh
+<i>chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh</i>
 
 Now run the script:
 
-./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log
+<i>./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log</i>
 
 Your Pi would reboot upon completion of script. 
 Once it is back up, connect to your Pi (via SSH or terminal) and change the password for PiHole Admin using the command given below:
 
 <i>pihole -a -p <YourNewPassword> </i>
 
-In your browser, open the <u>https://<IP of your Pi>/admin</u> and you should see the default admin page.
+In your browser, open the <a>http://<IP of your Pi>/admin</a> and you should see the default admin page.
 Click on the Login button and enter the password you set in previous step.
-PiHole is installed and running.
+Login and test PiHole is installed and running.
+  
+Login to your router and set IP address of the Pi as your DNS for LAN as well as WAN.
   
 Testing DoH:
-Flush your DNS cache
+Flush your DNS cache (run in windows command prompt <i>ipconfig /flushdns</i>)
 Open dnsleaktest.com and run extended test. IT should should only show 1 Cloudflare server in final result.
 
 
