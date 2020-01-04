@@ -3,7 +3,7 @@ Automated Installation of PiHole and DNS Over HTTPS using Cloudflared.
 Aim of this project is to provide user with 1-click (or minimal) set up capability for PiHole along with DNS Over HTTPS.
 There are subscripts that update prerouting rules on DD-WRT router (tested on Asus RT68U) to capture traffic from devices with hardcoded DNS (Ex: Chromecast, Roku etc.).
 
-#Installation
+#Simple Installation:
 In order to execute the script file, run below commands from your Pi terminal (SSH) :
 
 wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_Over_HTTPS_Via_Cloudflare.sh
@@ -12,16 +12,17 @@ Update the permissions on the downloaded file using:
 
 chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh
 
-To prevent installation of web server you set INSTALL_WEB_SERVER=true in the setupVars.conf.
-
 Now run the script:
 
 ./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log
 
-During the course of execution, this script downloads setupVars.conf file which is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues uplon user confirmation.
-
 Do not forget to update your PiHole Admin password. Use command given below:
 pihole -a -p YourNewPassword
+
+#Custom Installation:
+
+setupVArs.conf: During the course of execution, this script downloads setupVars.conf file which is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues upon user confirmation.
+To prevent installation of web server you set INSTALL_WEB_SERVER=true in the setupVars.conf.
 
 HardCodedDNSFilter.sh: This script assumes you ahve set up key based authentication between your Pi and DD-WRT router. If not, please follow another script/tutorial to set that up before proceeding.
 The script dynamically fetches the PiHole IP and SSHs into the Router (using IP fetched by script) to execute another script.
