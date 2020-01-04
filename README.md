@@ -19,9 +19,9 @@ Now run the script:
 Your Pi would reboot upon completion of script. 
 Once it is back up, connect to your Pi (via SSH or terminal) and change the password for PiHole Admin using the command given below:
 
-pihole -a -p <YourNewPassword>
+<i>pihole -a -p <YourNewPassword> </i>
 
-In your browser, open the https://<IP of your Pi>/admin and you should see the default admin page.
+In your browser, open the <u>https://<IP of your Pi>/admin</u> and you should see the default admin page.
 Click on the Login button and enter the password you set in previous step.
 PiHole is installed and running.
   
