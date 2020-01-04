@@ -16,15 +16,26 @@ Now run the script:
 
 ./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log
 
-Do not forget to update your PiHole Admin password. Use command given below:
+Your Pi would reboot upon completion of script. 
+Once it is back up, connect to your Pi (via SSH or terminal) and change the password for PiHole Admin using the command given below:
+
 pihole -a -p YourNewPassword
+
+In your browser, open the https://<IP of your Pi>/admin and you should see the default admin page.
+Click on the Login button and enter the password you set in previous step.
+PiHole is installed and running.
+  
+Testing DoH:
+Flush your DNS cache
+Open dnsleaktest.com and run extended test. IT should should only show 1 Cloudflare server in final result.
+
 
 #Custom Installation:
 
 setupVArs.conf: During the course of execution, this script downloads setupVars.conf file which is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues upon user confirmation.
 To prevent installation of web server you set INSTALL_WEB_SERVER=true in the setupVars.conf.
 
-HardCodedDNSFilter.sh: This script assumes you ahve set up key based authentication between your Pi and DD-WRT router. If not, please follow another script/tutorial to set that up before proceeding.
+HardCodedDNSFilter.sh: This script assumes you have set up key based authentication between your Pi and DD-WRT router. If not, please follow another script/tutorial to set that up before proceeding.
 The script dynamically fetches the PiHole IP and SSHs into the Router (using IP fetched by script) to execute another script.
 As the router flushes any changes to pre routing on each restart I have kept the router script on my Pi and execute it from here over SSH.
 TBD: A way to indetify that PiHole pre routing rule has been removed or check if router has been restarted.
