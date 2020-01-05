@@ -70,7 +70,7 @@ If everything went well, you have a working Pi Hole with Cloudflared proxy setup
 Please note you need to update your DNS setting on the LAN tab as well as WAN tab on your router admin page.
 
 ## Testing
-Once you have updated router config and restarted (or flushed DNS cache on client), run extended tests on dnsleaktest.com and you should see only 1 Cloudflare server in results. 
+Once you have updated router config and restarted (or flushed DNS cache on client), run extended tests on https://www.dnsleaktest.com (or http://en.conn.internet.nl/connection/ ) and you should see only 1 Cloudflare server in results. 
 
 For checking PiHole status, run <code> pihole status</code>.
 
