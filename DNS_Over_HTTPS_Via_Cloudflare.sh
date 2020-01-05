@@ -55,7 +55,7 @@ then
     read -p "Do you need to update SetupVars.conf for custom install? (Yes/No): " user_reply
     case $user_reply in
 		#User is ready to proceed with PiHole installation
-        [Nn]*) echo "User following Simple install path. Proceeding with PiHole installation.";
+        [Nn]*) echo "Proceeding with PiHole installation.";
 		
 		#Copy over the setupVars.conf file to /etc/pihole/. This file is used in unattended mode by the installer.
 		sudo mv setupVars.conf /etc/pihole/
