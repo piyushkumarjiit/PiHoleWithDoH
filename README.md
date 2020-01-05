@@ -64,7 +64,7 @@ As the router flushes any changes to pre routing on each restart, the router scr
 This script contains commands executed on DD-WRT router (with SSH enabled and configured to use key) to add PiHole IP in the pre routing rules. The script checks if the rule is already present and only updates if it is missing. Please update the port at which your router is listening for SSH.
 
 ## Post Installation Steps
-If everything went well so far you have a working Pi Hole with Cloudflared proxy setup but now you still need to update your router confing to utilize PiHole as DNS.
+If everything went well, you have a working Pi Hole with Cloudflared proxy setup but now you still need to update your router confing to utilize PiHole as DNS.
 Please note you need to update your DNS setting on the LAN tab as well as WAN tab on your router admin page.
 
 ## Testing
