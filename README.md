@@ -9,39 +9,40 @@ Connect to your Raspberry Pi via SSH (or directly using Terminal) and follow ins
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-Basic computer/Raspberry Pi know how
-Working Raspberry Pi
-SSH access to Raspberry Pi
-Access to Internet
+<li>Basic computer/Raspberry Pi know how</li>
+<li>Working Raspberry Pi</li>
+<li>SSH access to Raspberry Pi</li>
+<li>Access to Internet</li>
 
-The script is mostly self contained or fetches necessary files from github repo.
-What things you need to install the software and how to install them
+The script is mostly self contained and fetches necessary files from github repo.
 
 ### Installing
 #### Simple Installation
-In order to execute the script file, run below commands from your Pi terminal (SSH) :
+For installation, run below commands from your Pi terminal (or SSH session) :
 
-<i>wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_Over_HTTPS_Via_Cloudflare.sh</i>
+<code>wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/DNS_Over_HTTPS_Via_Cloudflare.sh</code>
 
 Update the permissions on the downloaded file using:
 
-<i>chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh</i>
+<code>chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh</code>
 
 Now run the script:
 
-<i>./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log</i>
+<code>./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log</code>
 
 <b>For advacned installation options, refer to Custom Installation section. </b>
 
 Your Pi would reboot upon completion of script. 
 
 Once it is back up, connect to your Pi (via SSH or terminal) and change the password for PiHole Admin using the command given below:
-<i>pihole -a -p <YourNewPassword> </i>
+<code>pihole -a -p <YourNewPassword> </code>
 
-Check the logs to confirm these 2 lines:
+For confirming successful installation open the log (DNS_Over_HTTPS_Via_Cloudflare.log) and search for below listed lines:
 <li>PiHole installation complete.</li>
 <li>Cloudflared setup complete.</li>
 <li>Log2ram install complete.</li>
+
+Presence of these lines means that everything went as expected.
 
 #### Custom Installation:
 These steps are for advacned users who need to customize the installation as per their need.
@@ -51,12 +52,13 @@ To prevent installation of web server, set <i>INSTALL_WEB_SERVER=true</i> in the
 To change the interface on which PiHole should run <TBD> in the setupVars.conf
 
 #### Forcing Client with Hardcoded DNS to use PiHole:
-HardCodedDNSFilter.sh: This script assumes you have set up key based authentication between your Pi and DD-WRT router. If not, please follow another script/tutorial to set that up before proceeding.
+A lot of devices like Chromecast, Fire TV, Roku etc have hardcoded DNS and escape PiHole filters. This raises a need to force these devices to use PiHole by adding a Pre Routing rule on the router.
+I did this on my Asus router but it should be similar for other DD WRT based routers.
+##### HardCodedDNSFilter.sh: This script assumes you have set up key based authentication between your Pi and DD-WRT router. If not, please follow another script/tutorial to set that up before proceeding.
 The script dynamically fetches the PiHole IP and SSHs into the Router (using IP fetched by script) to execute another script.
-As the router flushes any changes to pre routing on each restart I have kept the router script on my Pi and execute it from here over SSH.
-TBD: A way to indetify that PiHole pre routing rule has been removed or check if router has been restarted.
+As the router flushes any changes to pre routing on each restart, the router script on Pi should be added to cron and executed via SSH.
 
-PreRoutingForPi.sh: This script contains commands executed on DD-WRT router (with SSH enabled and configured to use key) to add PiHole IP in the pre routing rules. The script checks if the rule is already present and only updates if it is missing. Please update the port at which your router is listening for SSH.
+##### PreRoutingForPi.sh: This script contains commands executed on DD-WRT router (with SSH enabled and configured to use key) to add PiHole IP in the pre routing rules. The script checks if the rule is already present and only updates if it is missing. Please update the port at which your router is listening for SSH.
 
 ## Post Installation Steps
 If everything went well so far you have a working Pi Hole with Cloudflared proxy setup but now you still need to update your router confing to utilize PiHole as DNS.
