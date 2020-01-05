@@ -14,7 +14,7 @@ These instructions will get you a copy of the project up and running on your loc
 <li>SSH access to Raspberry Pi</li>
 <li>Access to Internet</li>
 
-The script is mostly self contained and fetches necessary files from github repo.
+The script is self contained and fetches necessary files from github repo.
 
 ### Installing
 #### Simple Installation
