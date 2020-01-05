@@ -48,6 +48,7 @@ then
 	sed -i "s/usedIP/${usedIP}/g" setupVars.conf
 	sed -i "s/RouterIP/${RouterIP}/g" setupVars.conf
 	echo "Updated setupVars.conf"
+	sleep 1
 	
 	#Give user opportunity to update SetupVars.conf for specific usecases
 	while true; do
@@ -186,7 +187,7 @@ cd $Home
 #Confirm internet connectivity
 internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 log2ram_present=$(log2ram status > /dev/null 2>&1; echo $?)
-if [[ $log2ram_present != 1 && $internet_access == 0 ]]
+if [[ ($log2ram_present != 1) && ($internet_access == 0) && ($install_aborted == "false") ]]
 then
 	#Fetch the Log2RAM from githib
 	curl -Lo log2ram.tar.gz https://github.com/azlux/log2ram/archive/master.tar.gz
