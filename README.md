@@ -83,6 +83,7 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 ## Acknowledgments
 Thanks to below URLs for providing me the necessary understanding and material to come up with this script.
 <li>https://docs.pi-hole.net/guides/dns-over-https/ </li>
+<li>https://github.com/azlux/log2ram</li>
 <li>https://bendews.com/posts/implement-dns-over-https/ </li>
 <li>https://www.Stackoverflow.com</li>
 <li>https://www.DuckDuckGo.com</li>
