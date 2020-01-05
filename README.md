@@ -77,7 +77,7 @@ Once you have updated router config and restarted (or flushed DNS cache on clien
 This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-Thanks to below URLs for providing me the necessary understanding and code to come up with this script.
+Thanks to below URLs for providing me the necessary understanding and material to come up with this script.
 <li>https://docs.pi-hole.net/guides/dns-over-https/ </li>
 <li>https://bendews.com/posts/implement-dns-over-https/ </li>
 <li>https://www.Stackoverflow.com</li>
