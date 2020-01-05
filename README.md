@@ -72,6 +72,8 @@ Please note you need to update your DNS setting on the LAN tab as well as WAN ta
 ## Testing
 Once you have updated router config and restarted (or flushed DNS cache on client), run extended tests on dnsleaktest.com and you should see only 1 Cloudflare server in results. 
 
+For checking PiHole status, run <code> pihole status</code>.
+
 For testing Log2Ram, run <code>df -h | grep log2ram</code> and non empty result would confirm the new mount folder created by Log2Ram.
 
 ## Authors
