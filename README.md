@@ -42,13 +42,14 @@ For confirming successful installation open the log (DNS_Over_HTTPS_Via_Cloudfla
 <li>Cloudflared setup complete.</li>
 <li>Log2ram install complete.</li>
 
+
 Presence of these lines means that everything went as expected.
 
 #### Custom Installation:
 These steps are for advacned users who need to customize the installation as per their need.
 setupVArs.conf: During the course of execution, this script downloads setupVars.conf file which is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues upon user confirmation.
 Possible configurations:
-To prevent installation of web server, set <i>INSTALL_WEB_SERVER=true</i> in the setupVars.conf
+To prevent installation of web server, set <code>INSTALL_WEB_SERVER=true</code> in the setupVars.conf
 To change the interface on which PiHole should run <TBD> in the setupVars.conf
 
 #### Forcing Client with Hardcoded DNS to use PiHole:
@@ -75,5 +76,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 Thanks to below URLs for providing me the necessary understanding and code to come up with this script.
-https://docs.pi-hole.net/guides/dns-over-https/
-https://bendews.com/posts/implement-dns-over-https/
+<li>https://docs.pi-hole.net/guides/dns-over-https/ </li>
+<li>https://bendews.com/posts/implement-dns-over-https/ </li>
