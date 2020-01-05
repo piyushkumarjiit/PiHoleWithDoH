@@ -6,7 +6,9 @@ Aim of this project is to provide user with 1-click (or minimal) set up capabili
 ## Getting Started
 
 Connect to your Raspberry Pi via SSH (or directly using Terminal) and follow installation instructions.
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+It would be quicker if you have updated your Pi before proceeding with installation. You can use below commands to update your Pi:
+<code>sudo apt-get update</code>
+<code>sudo apt-get dist-upgrade</code>
 
 ### Prerequisites
 <li>Basic computer/Raspberry Pi know how</li>
