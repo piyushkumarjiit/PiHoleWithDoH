@@ -163,6 +163,7 @@ then
 	sudo wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/50-cloudflared.conf
 	echo "cloudflared.conf download complete."
 	executed_flag="true"
+	echo "Cloudflared setup complete."
 elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Exiting."
@@ -189,6 +190,7 @@ then
 	cd ..
 	rm -r log2ram-master
 	executed_flag="true"
+	echo "Log2ram install complete."
 elif [[ $internet_access -gt 0 ]]
 then
 	echo "No internet. Exiting."
@@ -211,7 +213,3 @@ then
 else
 	echo "No changes done. Exiting."
 fi
-
-
-
-
