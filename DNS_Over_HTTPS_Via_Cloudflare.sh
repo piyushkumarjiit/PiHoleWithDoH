@@ -75,6 +75,8 @@ then
 
 		echo "$(tput setaf 2)PiHole installation complete.$(tput sgr0)"
 		executed_flag="true"
+		#Remove the pi hole installer after installation.
+		rm basic-install.sh
 		break;;
 		#If user is not ready to proceed with PiHole installation
 		[Yy]* ) echo "Please update setupVars.conf and rerun the script."
@@ -195,8 +197,10 @@ then
 	cd log2ram-master
 	chmod +x install.sh && sudo ./install.sh
 	cd ..
+	#Remove files that are no longer required
 	rm -r log2ram-master
-	executed_flag="true"
+	rm log2ram.tar.gz
+	executed_flag="true"	
 	echo "$(tput setaf 2)Log2ram install complete.$(tput sgr0)"
 elif [[ $internet_access -gt 0 ]]
 then
