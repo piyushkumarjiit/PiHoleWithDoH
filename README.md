@@ -72,7 +72,7 @@ Once you have updated router config and restarted (or flushed DNS cache on clien
 **Piyush Kumar** - (https://github.com/piyushkumarjiit)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 Thanks to below URLs for providing me the necessary understanding and code to come up with this script.
