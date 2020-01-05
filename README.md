@@ -35,7 +35,7 @@ Now run below script and follow prompts:
 Your Pi would reboot upon completion of script. 
 
 Once it is back up, connect to your Pi (via SSH or terminal) and change the password for PiHole Admin using the command given below:
-<code>pihole -a -p <YourNewPassword> </code>
+<code>pihole -a -p YourNewPassword </code>
 
 For confirming successful installation open the log (DNS_Over_HTTPS_Via_Cloudflare.log) and search for below listed lines:
 <li>PiHole installation complete.</li>
