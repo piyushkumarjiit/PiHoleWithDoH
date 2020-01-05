@@ -26,11 +26,11 @@ Update the permissions on the downloaded file using:
 
 <code>chmod 755 DNS_Over_HTTPS_Via_Cloudflare.sh</code>
 
-Now run the script:
+Now run below script and follow prompts:
 
 <code>./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log</code>
 
-<b>For advacned installation options, refer to Custom Installation section. </b>
+<b>Note: For advacned installation options, refer to Custom Installation section. </b>
 
 Your Pi would reboot upon completion of script. 
 
