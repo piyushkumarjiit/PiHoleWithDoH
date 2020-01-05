@@ -7,8 +7,8 @@ Aim of this project is to provide user with 1-click (or minimal) set up capabili
 
 Connect to your Raspberry Pi via SSH (or directly using Terminal) and follow installation instructions.
 It would be quicker if you have updated your Pi before proceeding with installation. You can use below commands to update your Pi:
-<code>sudo apt-get update</code>
-<code>sudo apt-get dist-upgrade</code>
+<li> <code>sudo apt-get update</code> </li>
+<li> <code>sudo apt-get dist-upgrade</code> </li>
 
 ### Prerequisites
 <li>Basic computer/Raspberry Pi know how</li>
