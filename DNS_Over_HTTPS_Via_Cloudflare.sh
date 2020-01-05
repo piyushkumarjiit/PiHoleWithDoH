@@ -35,7 +35,7 @@ then
 	RouterIP=$(ip r | awk '/default via/ {print $3}')
 	
 	#Check if setupVars.conf is present in directory (user rerun of script for custom install)
-	if [[ -f setupVars.conf]]
+	if [[ -f setupVars.conf ]]
 	then
 		echo "setupVars.conf present in directory. Skipping download."
 	else
@@ -99,7 +99,7 @@ internet_access=$(ping -q -c 1 -W 1 1.1.1.1 > /dev/null 2>&1; echo $?)
 
 #Check if Cloudflared proxy is already installed and running
 cloudflared_working=$(cloudflared -v > /dev/null 2>&1; echo $?)
-if [[ ($cloudflared_working -gt 0( && ($internet_access == 0) && ($install_aborted == "false") ]]
+if [[ ($cloudflared_working -gt 0) && ($internet_access == 0) && ($install_aborted == "false") ]]
 then
 	echo "Proceeding with Clouflared Proxy installation"
 	
