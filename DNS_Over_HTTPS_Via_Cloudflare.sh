@@ -109,7 +109,7 @@ then
 	#Downloading the Cloudflare proxy (Check this page for more details: https://developers.cloudflare.com/argo-tunnel/downloads/)
 	cd $Home
 	#Check the Model of Pi. There needs to be a separate binary for Zero
-	model= $(echo $(cat /proc/cpuinfo | grep Model | grep -e "Zero" -e "Model A"))
+	model=$(echo $(cat /proc/cpuinfo | grep Model | grep -e "Zero" -e "Model A"))
 	if [[ -n $model ]]
 	then
 		echo "Pi Zero detected. Downloading binary."
