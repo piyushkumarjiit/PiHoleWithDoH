@@ -80,3 +80,5 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 Thanks to below URLs for providing me the necessary understanding and code to come up with this script.
 <li>https://docs.pi-hole.net/guides/dns-over-https/ </li>
 <li>https://bendews.com/posts/implement-dns-over-https/ </li>
+<li> Stackoverflow/li>
+<li> DuckduckGo</li>
