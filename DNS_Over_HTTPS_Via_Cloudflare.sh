@@ -33,9 +33,15 @@ then
 
 	#Find Default Gateway
 	RouterIP=$(ip r | awk '/default via/ {print $3}')
-
+	
+	#Check if setupVars.conf is present in directory (user rerun of script for custom install)
+	if [[ -f setupVars.conf]]
+	then
+		echo "setupVars.conf present in directory. Skipping download."
+	else
 	#Get setupVars.conf file from github
 	wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/setupVars.conf
+	fi
 
 	#Update the file to use correct Interface and IP of the Pi
 	sed -i "s/usedInterface/${usedInterface}/g" setupVars.conf
@@ -45,10 +51,10 @@ then
 	
 	#Give user opportunity to update SetupVars.conf for specific usecases
 	while true; do
-    read -p "If you need to update SetupVars.conf, please do and then enter Yes/No: " user_reply
+    read -p "Do you need to update SetupVars.conf for custom install? (Yes/No): " user_reply
     case $user_reply in
 		#User is ready to proceed with PiHole installation
-        [Yy]* ) echo "Proceeding with PiHole installation.";
+        [Nn]*) echo "User following Simple install path. Proceeding with PiHole installation.";
 		
 		#Copy over the setupVars.conf file to /etc/pihole/. This file is used in unattended mode by the installer.
 		sudo mv setupVars.conf /etc/pihole/
@@ -66,26 +72,26 @@ then
 		#Installing Pi-Hole in unattended mode
 		sudo bash basic-install.sh --unattended
 
-		echo "PiHole installation complete."
+		echo "$(tput setaf 2)PiHole installation complete.$(tput sgr0)"
 		executed_flag="true"
 		break;;
 		#If user is not ready to proceed with PiHole installation
-		[Nn]* ) echo "User aborted the PiHole installation."; 
+		[Yy]* ) echo "Please update setupVars.conf and rerun the script."
+		echo "User aborted the PiHole installation."; 
 		#Do some clean up so that user can re run the installation
-		rm setupVars.conf
 		sudo rm -rf /etc/pihole
 		install_aborted="true"
 		sleep 2;
 		break;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo "Please answer Yes or No.";;
     esac
 done
 
 elif [[ $internet_access -gt 0 ]]
 then
-	echo "No internet. Existing."
+	echo "$(tput setaf 1)No internet. Existing.$(tput sgr0)"
 else
-	echo "Pi Hole already installed, skipping Pi Hole installation"
+	echo "$(tput setaf 1)Pi Hole seems to be already installed, skipping Pi Hole installation$(tput sgr0)"
 fi
 
 #Confirm internet connectivity after PiHole installation
@@ -100,7 +106,7 @@ then
 	#Downloading the Cloudflare proxy (Check this page for more details: https://developers.cloudflare.com/argo-tunnel/downloads/)
 	cd $Home
 	#Check the Model of Pi. There needs to be a separate binary for Zero
-	model=$(echo $(cat /proc/cpuinfo | grep Model | grep -e "Zero" -e "Model A"))
+	model="$(cat /proc/cpuinfo | grep Model | grep -e "Zero" -e "Model A")" 
 	if [[ -n $model ]]
 	then
 		echo "Pi Zero detected. Downloading binary."
@@ -163,13 +169,13 @@ then
 	sudo wget https://raw.githubusercontent.com/piyushkumarjiit/PiHoleWithDoH/master/50-cloudflared.conf
 	echo "cloudflared.conf download complete."
 	executed_flag="true"
-	echo "Cloudflared setup complete."
+	echo "$(tput setaf 2)Cloudflared setup complete.$(tput sgr0)"
 elif [[ $internet_access -gt 0 ]]
 then
-	echo "No internet. Exiting."
+	echo "$(tput setaf 1)No internet. Exiting.$(tput sgr0)"
 elif [[ $install_aborted == "true" ]]
 then
-	echo "PiHole Install Aborted. Skipping Cloudflared installation."
+	echo "$(tput setaf 1)PiHole Install Aborted. Skipping Cloudflared installation.$(tput sgr0)"
 else
 	echo "Cloudflared already installed. Skipping installation."
 fi
@@ -190,13 +196,13 @@ then
 	cd ..
 	rm -r log2ram-master
 	executed_flag="true"
-	echo "Log2ram install complete."
+	echo "$(tput setaf 2)Log2ram install complete.$(tput sgr0)"
 elif [[ $internet_access -gt 0 ]]
 then
-	echo "No internet. Exiting."
+	echo "$(tput setaf 1)No internet. Exiting.$(tput sgr0)"
 elif [[ $install_aborted == "true" ]]
 then
-	echo "PiHole Install Aborted. Skipping Log2RAM installation."
+	echo "$(tput setaf 1)PiHole Install Aborted. Skipping Log2RAM installation.$(tput sgr0)"
 else
 	echo "Log2RAM already installed. Skipping installation."
 fi
@@ -208,7 +214,7 @@ fi
 ###Reboot your Pi-Hole
 if [[ $executed_flag == "true" ]]
 then
-	echo "Script complete, rebooting."
+	echo "$(tput setaf 2)Script complete, rebooting.$(tput sgr0)"
 	sudo reboot
 else
 	echo "No changes done. Exiting."
