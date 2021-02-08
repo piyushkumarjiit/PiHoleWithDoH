@@ -29,7 +29,7 @@ Update the permissions on the downloaded file using:
 
 Now run below script and follow prompts:
 
-<code>./DNS_Over_HTTPS_Via_Cloudflare.sh  | tee DNS_Over_HTTPS_Via_Cloudflare.log</code>
+<code>./DNS_Over_HTTPS_Via_Cloudflare.sh  |& tee DNS_Over_HTTPS_Via_Cloudflare.log</code>
 
 <b>Note: For advacned installation options, refer to Custom Installation section. </b>
 
