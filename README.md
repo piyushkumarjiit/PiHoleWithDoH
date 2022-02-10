@@ -1,3 +1,4 @@
+
 # PiHoleWithDoH
 
 Automated Installation of PiHole and DNS Over HTTPS using Cloudflared proxy. It also installs Log2ram to prevent constant writes to SD card.
@@ -31,7 +32,7 @@ Now run below script and follow prompts:
 
 <code>./DNS_Over_HTTPS_Via_Cloudflare.sh  |& tee DNS_Over_HTTPS_Via_Cloudflare.log</code>
 
-<b>Note: For advacned installation options, refer to Custom Installation section. </b>
+<b>Note: For advanced installation options, refer to Custom Installation section. </b>
 
 Your Pi would reboot upon completion of script. 
 
@@ -47,8 +48,8 @@ For confirming successful installation open the log (DNS_Over_HTTPS_Via_Cloudfla
 Presence of these lines means that everything went as expected.
 
 #### Custom Installation:
-These steps are for advacned users who need to customize the installation as per their need.
-setupVArs.conf: During the course of execution, this script downloads setupVars.conf file which is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues upon user confirmation.
+These steps are for advanced users who need to customize the installation as per their need.
+setupVars.conf: During the course of execution, this script downloads setupVars.conf file which is used to install PiHole in unattended mode. In case you want to adjust the installation as per your need (Ex: using your existing web server), you can update the file and PiHole installation would proceed accordingly. The script stops in the middle for user to modify the file (in another terminal) and continues upon user confirmation.
 Possible configurations:
 <li>To prevent installation of web server, set <code>INSTALL_WEB_SERVER=true</code> in the setupVars.conf </li>
 <li>To change the interface on which PiHole should run update the setupVars.conf </li>
@@ -65,7 +66,7 @@ As the router flushes any changes to pre routing on each restart, the router scr
 This script contains commands executed on DD-WRT router (with SSH enabled and configured to use key) to add PiHole IP in the pre routing rules. The script checks if the rule is already present and only updates if it is missing. Please update the port at which your router is listening for SSH.
 
 ## Post Installation Steps
-If everything went well, you have a working Pi Hole with Cloudflared proxy setup but now you still need to update your router confing to utilize PiHole as DNS.
+If everything went well, you have a working Pi Hole with Cloudflared proxy setup but now you still need to update your router configuration to utilize PiHole as DNS.
 Please note you need to update your DNS setting on the LAN tab as well as WAN tab on your router admin page.
 
 ## Testing
