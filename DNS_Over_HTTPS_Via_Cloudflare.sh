@@ -115,11 +115,20 @@ then
 		echo "Pi Zero detected. Downloading binary."
 		wget https://hobin.ca/cloudflared/releases/2019.12.0/cloudflared_2019.12.0_arm.tar.gz
 		mv cloudflared_2019.12.0_arm.tar.gz cloudflared-stable-linux-arm.tgz
+  		tar -xvzf cloudflared-stable-linux-arm.tgz
 	else
-		echo "Pi 3 detected. Downloading binary."
-		wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
+ 		model=$(echo $(cat /proc/cpuinfo | grep Model | grep -e "Rev 1.2"))
+		if [[ -n $model ]]
+  		then
+			echo "Pi 3 detected. Downloading binary."
+			#wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
+  			wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm -O cloudflared
+     		else
+       			echo "Pi 4 detected. Downloading binary."
+  			wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -O cloudflared
+       		fi
 	fi
-	tar -xvzf cloudflared-stable-linux-arm.tgz
+	
 	echo "Download and untar complete."
 
 	#Copy the cloudflared binary to local bin and update permissions
